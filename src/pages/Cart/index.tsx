@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useCart } from '../../hooks/cart';
+import formatPrice from '../../utils/formatPrice';
 import {
   Container,
   Card,
@@ -14,6 +16,11 @@ import {
   ButtonDecrement,
   ProductPriceFinal,
   TotalPaylable,
+  CheckPrices,
+  TitleInformation,
+  SumProducts,
+  DescriptionCheckPrices,
+  PriceProducts,
   InfoTotalPrice,
   TextTotalPrice,
   TextValue,
@@ -22,194 +29,83 @@ import {
 } from './styles';
 
 const Cart: React.FC = () => {
+  const {
+    products,
+    freightPrice,
+    sumTotalProducts,
+    removeToCart,
+    incrementQuantity,
+    decrementQuantity,
+  } = useCart();
+
+  const formattedFreightPrice = useMemo(() => {
+    return freightPrice > 250 ? formatPrice(0) : formatPrice(freightPrice);
+  }, [freightPrice]);
+
+  const formattedSumTotalProducts = useMemo(() => {
+    return formatPrice(sumTotalProducts);
+  }, [sumTotalProducts]);
+
+  const sumOfTotalOrder = useMemo(() => {
+    const total = sumTotalProducts + freightPrice;
+
+    return formatPrice(total);
+  }, [sumTotalProducts, freightPrice]);
+
   return (
     <>
       <Container showsVerticalScrollIndicator={false}>
-        <Card>
-          <ButtonDeleteProduct>
-            <Icon name="close" size={15} color="#000000" />
-          </ButtonDeleteProduct>
+        {products.map((product) => (
+          <Card key={product.id}>
+            <ButtonDeleteProduct onPress={() => removeToCart(product.id)}>
+              <Icon name="close" size={18} color="#000000" />
+            </ButtonDeleteProduct>
 
-          <ProductImage
-            source={{
-              uri:
-                'https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg',
-            }}
-          />
+            <ProductImage
+              source={{
+                uri: product.image,
+              }}
+            />
 
-          <ProductInfos>
-            <Description>Cadeira louca do Pedro asdf asdf</Description>
+            <ProductInfos>
+              <Description>{product.name}</Description>
 
-            <ProductPrice>R$ 300,00</ProductPrice>
+              <ProductPrice>{product.price}</ProductPrice>
 
-            <ActionQuantity>
-              <ButtonIncrement>
-                <Icon name="add" size={15} color="#fff" />
-              </ButtonIncrement>
-              <ProductQuantity>3</ProductQuantity>
-              <ButtonDecrement>
-                <Icon name="remove" size={15} color="#fff" />
-              </ButtonDecrement>
-              <ProductPriceFinal>R$1.5000,99</ProductPriceFinal>
-            </ActionQuantity>
-          </ProductInfos>
-        </Card>
+              <ActionQuantity>
+                <ButtonIncrement onPress={() => incrementQuantity(product.id)}>
+                  <Icon name="add" size={15} color="#fff" />
+                </ButtonIncrement>
+                <ProductQuantity>{product.quantity}</ProductQuantity>
+                <ButtonDecrement onPress={() => decrementQuantity(product.id)}>
+                  <Icon name="remove" size={15} color="#fff" />
+                </ButtonDecrement>
+                <ProductPriceFinal>
+                  {formatPrice(product.price * product.quantity)}
+                </ProductPriceFinal>
+              </ActionQuantity>
+            </ProductInfos>
+          </Card>
+        ))}
 
-        <Card>
-          <ButtonDeleteProduct>
-            <Icon name="close" size={15} color="#000000" />
-          </ButtonDeleteProduct>
+        <CheckPrices>
+          <TitleInformation>Informações do pedido</TitleInformation>
+          <SumProducts>
+            <DescriptionCheckPrices>Produtos</DescriptionCheckPrices>
+            <PriceProducts>{formattedSumTotalProducts}</PriceProducts>
+          </SumProducts>
 
-          <ProductImage
-            source={{
-              uri:
-                'https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg',
-            }}
-          />
-
-          <ProductInfos>
-            <Description>Cadeira louca do Pedro asdf asdf</Description>
-
-            <ProductPrice>R$ 300,00</ProductPrice>
-
-            <ActionQuantity>
-              <ButtonIncrement>
-                <Icon name="add" size={15} color="#fff" />
-              </ButtonIncrement>
-              <ProductQuantity>3</ProductQuantity>
-              <ButtonDecrement>
-                <Icon name="remove" size={15} color="#fff" />
-              </ButtonDecrement>
-              <ProductPriceFinal>R$1.5000,99</ProductPriceFinal>
-            </ActionQuantity>
-          </ProductInfos>
-        </Card>
-
-        <Card>
-          <ButtonDeleteProduct>
-            <Icon name="close" size={15} color="#000000" />
-          </ButtonDeleteProduct>
-
-          <ProductImage
-            source={{
-              uri:
-                'https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg',
-            }}
-          />
-
-          <ProductInfos>
-            <Description>Cadeira louca do Pedro asdf asdf</Description>
-
-            <ProductPrice>R$ 300,00</ProductPrice>
-
-            <ActionQuantity>
-              <ButtonIncrement>
-                <Icon name="add" size={15} color="#fff" />
-              </ButtonIncrement>
-              <ProductQuantity>3</ProductQuantity>
-              <ButtonDecrement>
-                <Icon name="remove" size={15} color="#fff" />
-              </ButtonDecrement>
-              <ProductPriceFinal>R$1.5000,99</ProductPriceFinal>
-            </ActionQuantity>
-          </ProductInfos>
-        </Card>
-
-        <Card>
-          <ButtonDeleteProduct>
-            <Icon name="close" size={15} color="#000000" />
-          </ButtonDeleteProduct>
-
-          <ProductImage
-            source={{
-              uri:
-                'https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg',
-            }}
-          />
-
-          <ProductInfos>
-            <Description>Cadeira louca do Pedro asdf asdf</Description>
-
-            <ProductPrice>R$ 300,00</ProductPrice>
-
-            <ActionQuantity>
-              <ButtonIncrement>
-                <Icon name="add" size={15} color="#fff" />
-              </ButtonIncrement>
-              <ProductQuantity>3</ProductQuantity>
-              <ButtonDecrement>
-                <Icon name="remove" size={15} color="#fff" />
-              </ButtonDecrement>
-              <ProductPriceFinal>R$159,99</ProductPriceFinal>
-            </ActionQuantity>
-          </ProductInfos>
-        </Card>
-
-        <Card>
-          <ButtonDeleteProduct>
-            <Icon name="close" size={15} color="#000000" />
-          </ButtonDeleteProduct>
-
-          <ProductImage
-            source={{
-              uri:
-                'https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg',
-            }}
-          />
-
-          <ProductInfos>
-            <Description>Cadeira louca do Pedro asdf asdf</Description>
-
-            <ProductPrice>R$ 300,00</ProductPrice>
-
-            <ActionQuantity>
-              <ButtonIncrement>
-                <Icon name="add" size={15} color="#fff" />
-              </ButtonIncrement>
-              <ProductQuantity>3</ProductQuantity>
-              <ButtonDecrement>
-                <Icon name="remove" size={15} color="#fff" />
-              </ButtonDecrement>
-              <ProductPriceFinal>R$150,99</ProductPriceFinal>
-            </ActionQuantity>
-          </ProductInfos>
-        </Card>
-
-        <Card>
-          <ButtonDeleteProduct>
-            <Icon name="close" size={15} color="#000000" />
-          </ButtonDeleteProduct>
-
-          <ProductImage
-            source={{
-              uri:
-                'https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg',
-            }}
-          />
-
-          <ProductInfos>
-            <Description>Cadeira louca do Pedro asdf asdf</Description>
-
-            <ProductPrice>R$ 300,00</ProductPrice>
-
-            <ActionQuantity>
-              <ButtonIncrement>
-                <Icon name="add" size={15} color="#fff" />
-              </ButtonIncrement>
-              <ProductQuantity>3</ProductQuantity>
-              <ButtonDecrement>
-                <Icon name="remove" size={15} color="#fff" />
-              </ButtonDecrement>
-              <ProductPriceFinal>R$30,99</ProductPriceFinal>
-            </ActionQuantity>
-          </ProductInfos>
-        </Card>
+          <SumProducts>
+            <DescriptionCheckPrices>Frete</DescriptionCheckPrices>
+            <PriceProducts>{formattedFreightPrice}</PriceProducts>
+          </SumProducts>
+        </CheckPrices>
       </Container>
 
       <TotalPaylable>
         <InfoTotalPrice>
           <TextTotalPrice>Preço total:</TextTotalPrice>
-          <TextValue>R$ 250,00</TextValue>
+          <TextValue>{sumOfTotalOrder}</TextValue>
         </InfoTotalPrice>
 
         <ButtonFinalizePayment>

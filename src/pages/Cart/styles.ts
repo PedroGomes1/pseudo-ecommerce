@@ -21,8 +21,8 @@ export const ButtonDeleteProduct = styled(RectButton)`
   position: absolute;
   background: #e9e8ec;
   border-radius: 5px;
-  top: 0px;
-  right: 0px;
+  top: -5px;
+  right: -5px;
 `;
 
 export const ProductImage = styled.Image`
@@ -47,13 +47,6 @@ export const ProductPrice = styled.Text`
   font-family: 'Roboto-Regular';
 `;
 
-// export const ProductTotal = styled.Text`
-//   font-size: 18px;
-//   color: #0acf83;
-//   margin-top: 8px;
-//   font-family: 'Roboto-Bold';
-// `;
-
 export const ActionQuantity = styled.View`
   flex-direction: row;
   align-items: center;
@@ -67,10 +60,10 @@ export const ProductQuantity = styled.Text`
 `;
 
 export const ButtonIncrement = styled(RectButton)`
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   background: #0acf83;
-  border-radius: 5px;
+  border-radius: 12px;
 
   justify-content: center;
   align-items: center;
@@ -80,10 +73,10 @@ export const ButtonDecrement = styled(RectButton)`
   justify-content: center;
   align-items: center;
 
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   background: #0acf83;
-  border-radius: 5px;
+  border-radius: 12px;
 `;
 
 export const ProductPriceFinal = styled.Text`
@@ -98,11 +91,43 @@ export const TotalPaylable = styled.View`
 
   background: rgba(255, 255, 255, 0.5);
   padding: 15px;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
 
   margin-top: auto;
+`;
+
+export const CheckPrices = styled.View`
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-top-width: 2px;
+  margin-top: auto;
+  padding: 0 24px;
+`;
+
+export const TitleInformation = styled.Text`
+  font-size: 20px;
+  font-family: 'Poppins-Bold';
+
+  margin-top: 10px;
+`;
+
+export const SumProducts = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 10px;
+`;
+
+export const DescriptionCheckPrices = styled.Text`
+  font-size: 14px;
+  font-family: 'Poppins-Regular';
+`;
+
+export const PriceProducts = styled.Text`
+  font-size: 16px;
+  font-family: 'Poppins-Medium';
 `;
 
 export const InfoTotalPrice = styled.View``;
