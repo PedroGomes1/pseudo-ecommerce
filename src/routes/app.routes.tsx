@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import Header from '../components/Header';
 import Home from '../pages/Home';
 import Cart from '../pages/Cart';
 
@@ -9,7 +9,8 @@ const App = createStackNavigator();
 const AppRoutes: React.FC = () => (
   <App.Navigator
     screenOptions={{
-      headerShown: false,
+      headerShown: true,
+      headerTitle: () => <Header />,
     }}
     initialRouteName="Home">
     <App.Screen name="Home" component={Home} />
