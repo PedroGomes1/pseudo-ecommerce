@@ -1,14 +1,7 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-
-interface ProductsProps {
-  id: string;
-  name: string;
-  price: string;
-  score: number;
-  image: string;
-}
+import { ProductsProps } from './index';
 
 export const Container = styled.ScrollView`
   background-color: #95d7ae;

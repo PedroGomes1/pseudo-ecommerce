@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import IconSearch from 'react-native-vector-icons/MaterialIcons';
 import IconFilter from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useCart } from '../../hooks/cart';
+import formatPrice from '../../utils/formatPrice';
 import api from '../../services/api';
 import {
   Container,
@@ -24,22 +26,30 @@ import {
   ButtonAddProduct,
 } from './styles';
 
-interface ProductsProps {
-  id: string;
+export interface ProductsProps {
+  id: number;
   name: string;
-  price: string;
+  price: number;
   score: number;
   image: string;
+  priceFormatted: string;
+  quantity: number;
 }
 
 const Home: React.FC = () => {
+  const { addToCart } = useCart();
   const [products, setProducts] = useState<ProductsProps[]>([]);
 
   useEffect(() => {
     async function loadProducts(): Promise<void> {
       const response = await api.get('products');
 
-      setProducts(response.data);
+      setProducts(
+        response.data.map((product: ProductsProps) => ({
+          ...product,
+          priceFormatted: formatPrice(Number(product.price)),
+        })),
+      );
     }
 
     loadProducts();
@@ -67,7 +77,7 @@ const Home: React.FC = () => {
         <ContainerCards
           data={products}
           numColumns={2}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           nestedScrollEnabled
           ListFooterComponent={<View />}
           ListFooterComponentStyle={{
@@ -84,8 +94,8 @@ const Home: React.FC = () => {
 
               <ContainerPrice>
                 <ContainerPriceItens>
-                  <ProductPrice>R${item.price}</ProductPrice>
-                  <ButtonAddProduct>
+                  <ProductPrice>{item.priceFormatted}</ProductPrice>
+                  <ButtonAddProduct onPress={() => addToCart(item)}>
                     <Icon name="add" size={18} color="#FFF" />
                   </ButtonAddProduct>
                 </ContainerPriceItens>
