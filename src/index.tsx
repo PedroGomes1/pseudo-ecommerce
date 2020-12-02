@@ -1,13 +1,15 @@
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import AppContainer from './hooks';
 import Routes from './routes';
 
 const App: React.FC = () => (
-  <NavigationContainer>
+  <AppContainer>
     <Routes />
-  </NavigationContainer>
+  </AppContainer>
 );
 
 export default App;
