@@ -1,7 +1,9 @@
 import styled from 'styled-components/native';
-import { FlatList } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { ProductsProps } from './index';
+
+const heightScreen = Dimensions.get('window').height;
 
 export const Container = styled.ScrollView`
   background-color: #95d7ae;
@@ -56,18 +58,20 @@ export const ButtonFilters = styled(RectButton)`
   justify-content: center;
 `;
 
-export const ScrollViewCards = styled.View`
+export const ScrollViewCards = styled.SafeAreaView`
   flex: 1;
   margin-top: 20px;
   background-color: #f9fbf2;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
+  min-height: ${heightScreen}px;
 `;
 
 // eslint-disable-next-line prettier/prettier
 export const ContainerCards = styled(FlatList as new () => FlatList<ProductsProps>)`
   flex-direction: row;
   margin: 50px auto 0;
+  flex: 1;
 `;
 export const Card = styled.View`
   margin: 8px;

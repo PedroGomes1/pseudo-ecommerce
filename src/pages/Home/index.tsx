@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import IconSearch from 'react-native-vector-icons/MaterialIcons';
+import React, { useCallback, useEffect, useState } from 'react';
 import IconFilter from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Modal from '../../components/Modal';
 import { useCart } from '../../hooks/cart';
 import formatPrice from '../../utils/formatPrice';
 import api from '../../services/api';
@@ -39,9 +38,10 @@ export interface ProductsProps {
 const Home: React.FC = () => {
   const { addToCart } = useCart();
   const [products, setProducts] = useState<ProductsProps[]>([]);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    async function loadProducts(): Promise<void> {
+    async function loadProducts() {
       const response = await api.get('products');
 
       setProducts(
@@ -55,40 +55,66 @@ const Home: React.FC = () => {
     loadProducts();
   }, []);
 
+  const filteredProducts = useCallback((product: ProductsProps[]) => {
+    setProducts(
+      product.map((productItem) => ({
+        ...productItem,
+        priceFormatted: formatPrice(Number(productItem.price)),
+      })),
+    );
+  }, []);
+
+  const handleSearchByName = useCallback(async (name: string) => {
+    const response = await api.get(`products?name_like=${name}`);
+    setProducts(
+      response.data.map((product: ProductsProps) => ({
+        ...product,
+        priceFormatted: formatPrice(Number(product.price)),
+      })),
+    );
+  }, []);
+
   return (
-    <Container showsVerticalScrollIndicator={false}>
+    <Container showsVerticalScrollIndicator={false} scrollEnabled={!modal}>
       <ContainerHeader>
         <Title>Catálogo</Title>
-        <TotalProductsText>Total de 10 produtos encontrados</TotalProductsText>
+
+        <TotalProductsText>
+          Total de {products.length} produtos encontrados
+        </TotalProductsText>
 
         <ContainerFilters>
           <ContainerInputSearch>
-            <IconSearch name="search" size={30} color="#bababa" />
-            <InputSearchname placeholder="Buscar pelo nome do produto" />
+            <Icon name="search" size={30} color="#bababa" />
+            <InputSearchname
+              placeholder="Buscar pelo nome do produto"
+              onChangeText={(text) => handleSearchByName(text)}
+            />
           </ContainerInputSearch>
 
-          <ButtonFilters>
+          <ButtonFilters onPress={() => setModal(true)}>
             <IconFilter name="sliders" size={25} color="#ffffff" />
           </ButtonFilters>
         </ContainerFilters>
       </ContainerHeader>
+
+      {modal && (
+        <Modal
+          show={modal}
+          close={() => setModal(false)}
+          filteredProducts={filteredProducts}
+        />
+      )}
 
       <ScrollViewCards>
         <ContainerCards
           data={products}
           numColumns={2}
           keyExtractor={(item) => String(item.id)}
-          nestedScrollEnabled
-          ListFooterComponent={<View />}
-          ListFooterComponentStyle={{
-            height: 80,
-          }}
           renderItem={({ item }) => (
             <Card>
               <ProductImage
-                source={{
-                  uri: item.image,
-                }}
+                source={require('../../assets/images/fifa-18.png')}
               />
               <ProductDescription>{item.name}</ProductDescription>
 
