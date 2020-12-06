@@ -5,63 +5,63 @@
       "name": "Super Mario Odyssey",
       "price": 197.88,
       "score": 100,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/cFXnmjm/super-mario-odyssey.png"
     },
     {
       "id": 201,
       "name": "Call Of Duty Infinite Warfare",
       "price": 49.99,
       "score": 80,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/k6FRRS3/call-of-duty-infinite-warfare.png"
     },
     {
       "id": 102,
       "name": "The Witcher III Wild Hunt",
       "price": 119.5,
       "score": 250,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/Sxk3GHg/the-witcher-iii-wild-hunt.png"
     },
     {
       "id": 99,
       "name": "Call Of Duty WWII",
       "price": 249.99,
       "score": 205,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/f9VNrdK/call-of-duty-wwii.png"
     },
     {
       "id": 12,
       "name": "Mortal Kombat XL",
       "price": 69.99,
       "score": 150,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/BrmXnWD/mortal-kombat-xl.png"
     },
     {
       "id": 74,
       "name": "Shards of Darkness",
       "price": 71.94,
       "score": 400,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/gW7b77r/shards-of-darkness.png"
     },
     {
       "id": 31,
       "name": "Terra Média: Sombras de Mordor",
       "price": 79.99,
       "score": 50,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/q7YPFTS/terra-media-sombras-de-mordor.png"
     },
     {
       "id": 420,
       "name": "FIFA 18",
       "price": 195.39,
       "score": 325,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/g3jnPxM/fifa-18.png"
     },
     {
       "id": 501,
       "name": "Horizon Zero Dawn",
       "price": 1155.88,
       "score": 290,
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/camiseta-ecommerce.jpg"
+      "image": "https://i.ibb.co/jLp9qTD/horizon-zero-dawn.png"
     }
   ]
 }
