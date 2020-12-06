@@ -88,11 +88,14 @@ const Home: React.FC = () => {
             <Icon name="search" size={30} color="#bababa" />
             <InputSearchname
               placeholder="Buscar pelo nome do produto"
+              testID="search-filter-name"
               onChangeText={(text) => handleSearchByName(text)}
             />
           </ContainerInputSearch>
 
-          <ButtonFilters onPress={() => setModal(true)}>
+          <ButtonFilters
+            testID="button-open-modal"
+            onPress={() => setModal(true)}>
             <IconFilter name="sliders" size={25} color="#ffffff" />
           </ButtonFilters>
         </ContainerFilters>
@@ -114,14 +117,18 @@ const Home: React.FC = () => {
           renderItem={({ item }) => (
             <Card>
               <ProductImage
-                source={require('../../assets/images/fifa-18.png')}
+                source={{
+                  uri: item.image,
+                }}
               />
               <ProductDescription>{item.name}</ProductDescription>
 
               <ContainerPrice>
                 <ContainerPriceItens>
                   <ProductPrice>{item.priceFormatted}</ProductPrice>
-                  <ButtonAddProduct onPress={() => addToCart(item)}>
+                  <ButtonAddProduct
+                    testID={`add-cart-${item.id}`}
+                    onPress={() => addToCart(item)}>
                     <Icon name="add" size={18} color="#FFF" />
                   </ButtonAddProduct>
                 </ContainerPriceItens>
