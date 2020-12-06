@@ -11,6 +11,9 @@ const AppRoutes: React.FC = () => (
     screenOptions={{
       headerShown: true,
       headerTitle: () => <Header />,
+      headerStyle: {
+        backgroundColor: '#95d7ae',
+      },
     }}
     initialRouteName="Home">
     <App.Screen name="Home" component={Home} />
