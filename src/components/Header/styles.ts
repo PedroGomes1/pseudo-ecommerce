@@ -2,12 +2,12 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
-  justify-content: space-between;
   flex-direction: row;
-  align-items: center;
 `;
 
-export const CartInfo = styled(RectButton)``;
+export const CartInfo = styled(RectButton)`
+  margin-left: auto;
+`;
 
 export const QuantityItem = styled.Text`
   color: #fff;
