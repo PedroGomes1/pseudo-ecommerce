@@ -18,7 +18,7 @@ export const ContainerHeader = styled.View`
 
 export const Title = styled.Text`
   font-size: 20px;
-  font-family: 'Poppins-Medium';
+  font-family: 'Poppins-Bold';
   margin-bottom: 5px;
 `;
 export const TotalProductsText = styled.Text`
@@ -58,7 +58,7 @@ export const ButtonFilters = styled(RectButton)`
   justify-content: center;
 `;
 
-export const ScrollViewCards = styled.SafeAreaView`
+export const ContainerCards = styled.View`
   flex: 1;
   margin-top: 20px;
   background-color: #f9fbf2;
@@ -68,7 +68,7 @@ export const ScrollViewCards = styled.SafeAreaView`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const ContainerCards = styled(FlatList as new () => FlatList<ProductsProps>)`
+export const ListCards = styled(FlatList as new () => FlatList<ProductsProps>)`
   flex-direction: row;
   margin: 50px auto 0;
   flex: 1;
@@ -105,7 +105,7 @@ export const ContainerPriceItens = styled.View`
 `;
 
 export const ProductPrice = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   color: #000000;
   text-align: left;
   font-family: 'Roboto-Bold';

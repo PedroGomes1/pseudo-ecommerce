@@ -15,7 +15,7 @@ import {
   ContainerInputSearch,
   InputSearchname,
   ButtonFilters,
-  ScrollViewCards,
+  ListCards,
   Card,
   ProductImage,
   ProductDescription,
@@ -109,8 +109,8 @@ const Home: React.FC = () => {
         />
       )}
 
-      <ScrollViewCards>
-        <ContainerCards
+      <ContainerCards>
+        <ListCards
           data={products}
           numColumns={2}
           keyExtractor={(item) => String(item.id)}
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
             </Card>
           )}
         />
-      </ScrollViewCards>
+      </ContainerCards>
     </Container>
   );
 };
