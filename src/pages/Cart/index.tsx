@@ -73,11 +73,15 @@ const Cart: React.FC = () => {
               <ProductPrice>{product.price}</ProductPrice>
 
               <ActionQuantity>
-                <ButtonIncrement onPress={() => incrementQuantity(product.id)}>
+                <ButtonIncrement
+                  testID={`increment-quantity-${product.id}`}
+                  onPress={() => incrementQuantity(product.id)}>
                   <Icon name="add" size={15} color="#fff" />
                 </ButtonIncrement>
                 <ProductQuantity>{product.quantity}</ProductQuantity>
-                <ButtonDecrement onPress={() => decrementQuantity(product.id)}>
+                <ButtonDecrement
+                  testID={`decrement-quantity-${product.id}`}
+                  onPress={() => decrementQuantity(product.id)}>
                   <Icon name="remove" size={15} color="#fff" />
                 </ButtonDecrement>
                 <ProductPriceFinal>
