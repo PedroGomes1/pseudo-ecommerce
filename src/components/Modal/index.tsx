@@ -122,6 +122,7 @@ const Modal: React.FC<ModalProps> = ({ show, close, filteredProducts }) => {
           {data.map((item) => (
             <Card
               key={item.id}
+              testID={`card-score-${item.id}`}
               activeOpacity={0.8}
               onPress={() => handleSelectedScore(item)}
               isSelected={score?.id === item.id}>
@@ -137,6 +138,7 @@ const Modal: React.FC<ModalProps> = ({ show, close, filteredProducts }) => {
 
         <CardAlphabeticalOrder
           activeOpacity={0.8}
+          testID={'is-alphabetical'}
           onPress={() => setIsAlphabeticalOrder(!isAlphabeticalOrder)}
           isSelected={isAlphabeticalOrder}>
           <TextAlphabeticalOrder>a-Z</TextAlphabeticalOrder>

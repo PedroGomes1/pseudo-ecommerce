@@ -24,7 +24,7 @@ export const Indicator = styled.View`
   width: 50px;
   height: 5px;
   background-color: #ccc;
-  border-radius: 50;
+  border-radius: 20px;
   align-self: center;
   margin-top: 5px;
 `;
